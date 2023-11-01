@@ -10,7 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_arch: ^1.0.3
+  flutter_arch: ^1.0.4
+  pull_to_refresh: ^2.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
