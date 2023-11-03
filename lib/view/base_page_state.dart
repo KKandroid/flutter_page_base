@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_arch/flutter_arch.dart';
+import 'package:flutter_mvp/controller/base_controller.dart';
+import 'package:flutter_mvp/page_state_manager.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'base_page_model.dart';
-import 'page_state_manager.dart';
+
 
 /// 可刷新的页面
-abstract class BasePageState<T extends StatefulWidget, M extends BasePageModel> extends State<T>
+abstract class BasePageState<T extends StatefulWidget, M extends BaseController> extends State<T>
     with BaseViewState<T, M>, AutomaticKeepAliveClientMixin, RouteAware, WidgetsBindingObserver {
   /// 页面状态
   PageState? pageState;
@@ -116,7 +117,7 @@ abstract class BasePageState<T extends StatefulWidget, M extends BasePageModel> 
   Widget? buildFixedBottom(BuildContext context, M model) => null;
 
   Widget refreshHeader(BuildContext context) {
-    return PageStateManager().refreshHeader.call(context);
+    return PageStateManager().refreshHeader;
   }
 
   void onRefresh(M model) {
@@ -132,12 +133,12 @@ abstract class BasePageState<T extends StatefulWidget, M extends BasePageModel> 
 
   /// 数据为空的界面，自定义请覆写
   Widget buildEmptyView(BuildContext context, M model) {
-    return PageStateManager().emptyView.call(context);
+    return PageStateManager().emptyView;
   }
 
   /// 加载视图，自定义请覆写
   Widget buildLoadingView(BuildContext context, M model) {
-    return PageStateManager().loadingView.call(context);
+    return PageStateManager().loadingView;
   }
 
   /// 请求数据错误，自定义请覆写

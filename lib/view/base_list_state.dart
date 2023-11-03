@@ -2,16 +2,15 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_mvp/controller/base_controller.dart';
+import 'package:flutter_mvp/controller/base_list_controller.dart';
+import 'package:flutter_mvp/page_state_manager.dart';
+import 'package:flutter_mvp/view/base_page_state.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
-import 'base_list_model.dart';
-import 'base_page_model.dart';
-import 'base_page_state.dart';
-import 'page_state_manager.dart';
 
 /// 列表页面
 /// 可刷新加载 可添加header footer
-abstract class BaseListState<T extends StatefulWidget, D, M extends BaseListModel<D>> extends BasePageState<T, M> {
+abstract class BaseListState<T extends StatefulWidget, D, M extends BaseListController<D>> extends BasePageState<T, M> {
   @override
   Widget buildSuccessView(BuildContext context, M model) {
     return SmartRefresher(
@@ -93,9 +92,9 @@ abstract class BaseListState<T extends StatefulWidget, D, M extends BaseListMode
     return CustomScrollView(controller: scrollController, slivers: slivers);
   }
 
-  // 列表项布局, 一个 Column 布局，包含两个子元素:
-  // 一个是 [createIndexedWidget] 创建的真正要展示的内容，
-  // 一个是 [divider] 创建的分割列表项的分隔视图。
+  /// 列表项布局, 一个 Column 布局，包含两个子元素:
+  /// 一个是 [createIndexedWidget] 创建的真正要展示的内容，
+  /// 一个是 [divider] 创建的分割列表项的分隔视图。
   Widget _itemContainer(BuildContext context, int index) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -109,16 +108,17 @@ abstract class BaseListState<T extends StatefulWidget, D, M extends BaseListMode
     );
   }
 
+  /// 滚动过程中吸顶的视图
   SliverPersistentHeader? buildStickyHeader(BuildContext context, M model) => null;
 
   /// 没有更多视图
   Widget buildNoMoreView(BuildContext context, M model) {
-    return PageStateManager().noMoreView.call(context);
+    return PageStateManager().noMoreView;
   }
 
   /// 没有更多视图
   Widget buildLoadMoreFooter(BuildContext context) {
-    return PageStateManager().noMoreView.call(context);
+    return PageStateManager().loadingMoreFooter;
   }
 
   /// 列表最上面的固定 Header 布局，不可跟随列表一起滚动

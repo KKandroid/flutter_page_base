@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_arch/flutter_arch.dart';
-import 'package:flutter_mvp/response_data.dart';
+import 'package:flutter_mvp/model/response_data.dart';
 
 /// 页面数据状态
 enum PageState {
@@ -20,10 +20,10 @@ enum PageState {
   empty
 }
 
-abstract class BasePageModel extends ViewModel {
+abstract class BaseController extends ViewModel {
   LiveData<PageState> pageState = LiveData(PageState.loading);
 
-  BasePageModel(BuildContext context) : super(context);
+  BaseController(BuildContext context) : super(context);
 
   /// 数初始化数据 以及刷新页面调用
   @override
@@ -68,7 +68,7 @@ abstract class BasePageModel extends ViewModel {
 }
 
 /// 页面无需数据处理的逻辑时 使用[SimplePageModel] 即可
-class SimplePageModel extends BasePageModel {
+class SimplePageModel extends BaseController {
   SimplePageModel(BuildContext context) : super(context);
 
   @override

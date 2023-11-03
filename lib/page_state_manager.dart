@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mvp/response_data.dart';
+import 'package:flutter_mvp/model/response_data.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class PageStateManager {
   /// 私有构造函数
@@ -11,23 +12,25 @@ class PageStateManager {
   /// 单例
   static final PageStateManager _instance = PageStateManager._internal();
 
-  static setLoadingView(WidgetBuilder loadingView) => _instance.loadingView = loadingView;
-
-  static setEmptyView(WidgetBuilder emptyView) => _instance.emptyView = emptyView;
-
-  static setErrorView(ErrorWidgetBuilder errorView) => _instance.errorView = errorView;
-
-  WidgetBuilder loadingView = (context) => const Center(child: CupertinoActivityIndicator());
-
-  WidgetBuilder emptyView = (context) => const Center(child: Text("暂无数据"));
-
-  WidgetBuilder refreshHeader = (context) => const Center(child: Text("暂无数据"));
-
-  /// 上拉加载更多 没有更多数据
-  WidgetBuilder noMoreView = (context) => Container(height: 60, alignment: Alignment.center, child: const Text("暂无数据"));
-
+  /// 路由监视器
   RouteObserver routeObserver = RouteObserver();
 
+  /// loading视图
+  Widget loadingView = const Center(child: CupertinoActivityIndicator());
+
+  /// 无数据空视图
+  Widget emptyView = const Center(child: Text("暂无数据"));
+
+  /// 刷新头
+  Widget refreshHeader = const ClassicHeader();
+
+  /// 加载更多视图
+  Widget loadingMoreFooter = const ClassicFooter();
+
+  /// 上拉加载更多 没有更多数据
+  Widget noMoreView = Container(height: 60, alignment: Alignment.center, child: const Text("已全部加载"));
+
+  /// 错误页面视图
   ErrorWidgetBuilder errorView = (context, data, retry) {
     double contentHeight = 150;
     return LayoutBuilder(builder: (context, constraint) {
@@ -59,6 +62,38 @@ class PageStateManager {
       );
     });
   };
+
+  static void init({
+    RouteObserver? routeObserver,
+    Widget? refreshHeader,
+    Widget? loadMoreFooter,
+    Widget? noMoreView,
+    Widget? loadingView,
+    Widget? emptyView,
+    ErrorWidgetBuilder? errorView,
+  }) {
+    if (routeObserver != null) {
+      _instance.routeObserver = routeObserver;
+    }
+    if (refreshHeader != null) {
+      _instance.refreshHeader = refreshHeader;
+    }
+    if (loadMoreFooter != null) {
+      _instance.loadingMoreFooter = loadMoreFooter;
+    }
+    if (noMoreView != null) {
+      _instance.noMoreView = noMoreView;
+    }
+    if (loadingView != null) {
+      _instance.loadingView = loadingView;
+    }
+    if (emptyView != null) {
+      _instance.emptyView = emptyView;
+    }
+    if (errorView != null) {
+      _instance.errorView = errorView;
+    }
+  }
 }
 
 typedef ErrorWidgetBuilder = Widget Function(BuildContext context, ResponseData data, VoidCallback retry);

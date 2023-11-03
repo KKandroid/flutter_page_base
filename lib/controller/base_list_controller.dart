@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvp/paging_data.dart';
-
-import 'base_page_model.dart';
-import 'response_data.dart';
+import 'package:flutter_mvp/controller/base_controller.dart';
+import 'package:flutter_mvp/model/paging_data.dart';
+import 'package:flutter_mvp/model/response_data.dart';
 
 /// 长列表 model
-abstract class BaseListModel<D> extends BasePageModel {
+abstract class BaseListController<D> extends BaseController {
   bool hasMore = true;
 
   /// 每页数据条数
@@ -19,7 +18,7 @@ abstract class BaseListModel<D> extends BasePageModel {
   /// 列表数据
   List<D> data = [];
 
-  BaseListModel(BuildContext context) : super(context);
+  BaseListController(BuildContext context) : super(context);
 
   @override
   Future initData() async {
