@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_mvp/controller/base_controller.dart';
-import 'package:flutter_mvp/controller/base_list_controller.dart';
-import 'package:flutter_mvp/page_state_manager.dart';
-import 'package:flutter_mvp/view/base_page_state.dart';
+import 'package:flutter_page_base/controller/base_controller.dart';
+import 'package:flutter_page_base/controller/base_list_controller.dart';
+import 'package:flutter_page_base/page_state_manager.dart';
+import 'package:flutter_page_base/view/base_page_state.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 /// 列表页面

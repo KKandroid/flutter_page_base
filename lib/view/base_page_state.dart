@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_arch/flutter_arch.dart';
-import 'package:flutter_mvp/controller/base_controller.dart';
-import 'package:flutter_mvp/page_state_manager.dart';
+import 'package:flutter_page_base/controller/base_controller.dart';
+import 'package:flutter_page_base/page_state_manager.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 

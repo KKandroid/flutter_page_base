@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/Users/kangkai/develop/flutter3.7"
-export "FLUTTER_APPLICATION_PATH=/Users/kangkai/bitbuket/flutter_mvp"
+export "FLUTTER_APPLICATION_PATH=/Users/kangkai/bitbuket/flutter_page_base"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=0.0.1"

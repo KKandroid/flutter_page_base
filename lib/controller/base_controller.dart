@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_arch/flutter_arch.dart';
-import 'package:flutter_mvp/model/response_data.dart';
+import 'package:flutter_page_base/model/response_data.dart';
 
 /// 页面数据状态
 enum PageState {

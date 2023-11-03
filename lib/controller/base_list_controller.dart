@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvp/controller/base_controller.dart';
-import 'package:flutter_mvp/model/paging_data.dart';
-import 'package:flutter_mvp/model/response_data.dart';
+import 'package:flutter_page_base/controller/base_controller.dart';
+import 'package:flutter_page_base/model/paging_data.dart';
+import 'package:flutter_page_base/model/response_data.dart';
 
 /// 长列表 model
 abstract class BaseListController<D> extends BaseController {

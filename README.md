@@ -1,12 +1,10 @@
 ## Features
 
-This package provides a set component to build flutter app
-in [MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) design pattern.
+This package provides a set base component to build flutter app page.
 
 ## Getting started
+[]
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
 
 ## Usage
 
