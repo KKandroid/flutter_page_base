@@ -3,7 +3,6 @@
 This package provides a set base component to build flutter app page.
 
 ## Getting started
-[]
 
 
 ## Usage

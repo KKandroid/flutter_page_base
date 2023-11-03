@@ -1,7 +1,8 @@
 name: flutter_page_base
 description: A new Flutter project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/KKandroid/flutter_page_base
+repository: https://github.com/KKandroid/flutter_page_base
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
