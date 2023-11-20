@@ -12,6 +12,8 @@ class PageStateManager {
   /// 单例
   static final PageStateManager _instance = PageStateManager._internal();
 
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
   /// 路由监视器
   RouteObserver routeObserver = RouteObserver();
 
@@ -85,6 +87,7 @@ class PageStateManager {
 
   static void init({
     RouteObserver? routeObserver,
+    GlobalKey<NavigatorState>? navigatorKey,
     Widget? refreshHeader,
     Widget? loadMoreFooter,
     Widget? noMoreView,
@@ -116,6 +119,9 @@ class PageStateManager {
     }
     if (loadingBuilder != null) {
       _instance.loadingBuilder = loadingBuilder;
+    }
+    if (navigatorKey != null) {
+      _instance.navigatorKey = navigatorKey;
     }
   }
 }

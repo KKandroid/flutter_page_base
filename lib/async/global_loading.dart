@@ -6,17 +6,27 @@ import 'package:flutter_page_base/event_bus/event_bus.dart';
 import 'package:flutter_page_base/page_state_manager.dart';
 
 class GlobalLoading extends StatefulWidget {
-  static void init(BuildContext context) {
+  static bool init = false;
+
+  static void _init() {
+    BuildContext? context = PageStateManager().navigatorKey.currentContext;
+    if (context == null) {
+      return;
+    }
     Overlay.of(context).insert(OverlayEntry(
       builder: (context) => const GlobalLoading(),
       maintainState: true,
       opaque: true,
     ));
+    init = true;
   }
 
   static const eventKey = "GlobalLoading";
 
   static void show([String? message]) {
+    if (!init) {
+      _init();
+    }
     EventBus.sendEvent(Event(key: eventKey, data: LoadingMsg.show(message)));
   }
 
