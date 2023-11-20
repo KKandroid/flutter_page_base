@@ -63,6 +63,26 @@ class PageStateManager {
     });
   };
 
+  LoadingBuilder loadingBuilder = (context, message) {
+    return Container(
+      width: 120,
+      height: 120,
+      decoration: BoxDecoration(
+        color: Colors.black87,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const CupertinoActivityIndicator(radius: 16),
+          const SizedBox(height: 8),
+          Text(message, style: const TextStyle(color: Colors.white)),
+        ],
+      ),
+    );
+  };
+
   static void init({
     RouteObserver? routeObserver,
     Widget? refreshHeader,
@@ -71,6 +91,7 @@ class PageStateManager {
     Widget? loadingView,
     Widget? emptyView,
     ErrorWidgetBuilder? errorView,
+    LoadingBuilder? loadingBuilder,
   }) {
     if (routeObserver != null) {
       _instance.routeObserver = routeObserver;
@@ -93,7 +114,14 @@ class PageStateManager {
     if (errorView != null) {
       _instance.errorView = errorView;
     }
+    if (loadingBuilder != null) {
+      _instance.loadingBuilder = loadingBuilder;
+    }
   }
 }
 
+/// 错误页面
 typedef ErrorWidgetBuilder = Widget Function(BuildContext context, ResponseData data, VoidCallback retry);
+
+/// 异步阻塞交互的 loading
+typedef LoadingBuilder = Widget Function(BuildContext context, String message);
